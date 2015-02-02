@@ -9,6 +9,6 @@ namespace AOOADAssignment
 {
     interface Observer : IObserver<Event>
     {
-        public void update(string status);
+        void update(string status);
     }
 }
