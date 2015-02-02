@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace AOOADAssignment
 {
-    class Customer : User
+    class Customer : User, Observer
     {
         public Customer() { }
         public Customer(string uID, string pass, Name name, string email, Address addr, string phoneNum, CreditCard cc, ArrayList tickList, ArrayList payList) :base(uID, pass, name, email, addr)
