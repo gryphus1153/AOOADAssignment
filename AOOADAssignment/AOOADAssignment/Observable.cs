@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    public class Observable : IObservable<Event>
+    public class Observable
     {
         public Observable()
         {

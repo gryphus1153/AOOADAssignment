@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    interface Observer : IObserver<Event>
+    public interface Observer
     {
+
         void update(string status);
     }
 }

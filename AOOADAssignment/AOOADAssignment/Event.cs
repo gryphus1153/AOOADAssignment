@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace AOOADAssignment
 {
-    class Event : IObservable<Event>
+    class Event : Observable
     {
         public Event() { }
         public Event(string eName, DateTime sDate, DateTime eDate, Genre eg, ArrayList pList, int minSeats, string status, EventManager eLead, ArrayList sManagers, bool iConf)
