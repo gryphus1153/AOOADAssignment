@@ -14,12 +14,14 @@ namespace AOOADAssignment
     {
         static ArrayList userList = new ArrayList();
         static ArrayList EventList = new ArrayList();
+        static bool isCustomer = false;//if customer then true
         public Form1()
         {
             Address addr = new Address("Block 123", "Street1234", "uNo", "#01-900");
-            Name name = new Name("stupid", "irritating", "dumbass");
-            CreditCard cc = new CreditCard("ccNo", "09/25");
+            Name name = new Name("firstName", "middleName", "lastName");
+            CreditCard cc = new CreditCard("1234-5678-9019", "09/25");
             ArrayList tickList = new ArrayList();
+            //need ticket class
             ArrayList payList = new ArrayList();
             User cust1 = new Customer("uID", "pass", name, "email@email.com", addr, "999666999", cc, tickList, payList);
             userList.Add(cust1);
@@ -45,18 +47,6 @@ namespace AOOADAssignment
             InitializeComponent();
         }
 
-        private void startDateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void EventNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void NameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -71,18 +61,19 @@ namespace AOOADAssignment
                     {
                         tabControl1.Enabled = true;
                         tabControl1.Visible = true;
+                        if (i.GetType() == typeof(Customer))
+                        {
+                            isCustomer = true;
+                        }
                         exist = true;
                         break;
                     }
                 }
-                tabControl1.Enabled = false;
-                tabControl1.Visible = false;
-                exist = false;
+                
+
             }
             if (exist == true)
             {
-                //TextBox t = new TextBox();
-                //t.Text = "Logged in successfully";
                 label3.Text = "Logged in successfully!";
             }
             else
@@ -94,37 +85,133 @@ namespace AOOADAssignment
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-            browseListView.View = View.Details;
-            /*browseListView.Columns.Add("Event Name", -2, HorizontalAlignment.Center);
-            browseListView.Columns.Add("Start Date", -2, HorizontalAlignment.Center);
-            browseListView.Columns.Add("End Date", -2, HorizontalAlignment.Center);*/
-
-           // browseListView.Columns.Add("Event Name");
-           // browseListView.Columns.Add("Start Date");
-           // browseListView.Columns.Add("End Date");
-
-           // browseListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-           // browseListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-            ListViewExtender extender = new ListViewExtender(browseListView);
-            // extend 2nd column
-            ListViewButtonColumn buttonAction = new ListViewButtonColumn(3);
-            //buttonAction.Click += OnButtonActionClick;
-            buttonAction.FixedWidth = true;
-            ListViewButtonColumn buttonAction2 = new ListViewButtonColumn(4);
-            buttonAction2.FixedWidth = true;
-            extender.AddColumn(buttonAction);
-            extender.AddColumn(buttonAction2);
-            foreach (Event evt in EventList)
+            
+           
+            
+        }
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            if(isCustomer == true)
             {
-                if (evt.Status.Equals("Open"))
+
+            }
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+            if(isCustomer == false)
+            {
+
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (browseListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = browseListView.SelectedItems[0];
+                viewEventForm vEF = new viewEventForm();
+                vEF.eventName = item.SubItems[0].Text;
+                vEF.Visible = true;
+                vEF.Show();
+            }
+        }
+        void btnFilterStartDate_Click(object sender, EventArgs e)
+        {
+            ArrayList tempList = new ArrayList();
+            tempList.AddRange(EventList);
+            for (int i = 0; i < tempList.Count; ++i)
+            {
+                for (int j = 1; j < tempList.Count; ++j)
                 {
-                    //browseEventDisplay.Text += evt.EventName + "\t" + evt.StartDate + "\t" + evt.EndDate;
-                    ListViewItem item = new ListViewItem(new[] { evt.EventName.ToString(), evt.StartDate.ToString(), evt.EndDate.ToString(), "Buy" , "Follow"});
-                    browseListView.Items.Add(item);
+                    Event event1 = (Event)tempList[i];
+                    Event event2 = (Event)tempList[j];
+                    DateTime e1 = event1.StartDate;
+                    DateTime e2 = event2.StartDate;
+                    if (e1 > e2)
+                    {
+                        Event tempLargerEvent = event1;
+                        tempList[i] = event2;
+                        tempList[j] = tempLargerEvent;
+                    }
                 }
             }
         }
+
+        private void btnFilterEndDate_Click(object sender, EventArgs e)
+        {
+            //browseListView.Clear();
+            ArrayList tempList = new ArrayList();
+            tempList.AddRange(EventList);
+            for (int i = 0; i < tempList.Count; ++i)
+            {
+                for (int j = 1; j < tempList.Count; ++j)
+                {
+                    Event event1 = (Event)tempList[i];
+                    Event event2 = (Event)tempList[j];
+                    DateTime e1 = event1.EndDate;
+                    DateTime e2 = event2.EndDate;
+                    if (e1 > e2)
+                    {
+                        Event tempLargerEvent = event1;
+                        tempList[i] = event2;
+                        tempList[j] = tempLargerEvent;
+                    }
+                }
+            }
+            if (isCustomer == true)
+            {
+                browseListView.View = View.Details;
+                foreach (Event evt in tempList)
+                {
+                    if (evt.Status.Equals("Open"))
+                    {
+                        ListViewItem item = new ListViewItem(new[] { evt.EventName.ToString(), evt.StartDate.ToString(), evt.EndDate.ToString() });
+                        browseListView.Items.Add(item);
+                    }
+                }
+
+            }
+        }
+
+        private void btnEventFliter_Click(object sender, EventArgs e)
+        {
+            ArrayList tempList = new ArrayList();
+            tempList.AddRange(EventList);
+            for(int i= 0; i < tempList.Count; ++i)
+            {
+                for(int j=1; j<tempList.Count; ++j)
+                {
+                    Event event1 = (Event)tempList[i];
+                    Event event2 = (Event)tempList[j];
+                    string e1 = event1.EventName;
+                    string e2 = event2.EventName;
+                    if(String.Compare(e1,e2) > 0)
+                    {
+                        Event tempLargerEvent = event1;
+                        tempList[i] = event2;
+                        tempList[j] = tempLargerEvent;
+                    }
+                }
+            }
+            if (isCustomer == true)
+            {
+                browseListView.View = View.Details;
+                foreach (Event evt in tempList)
+                {
+                    if (evt.Status.Equals("Open"))
+                    {
+                        ListViewItem item = new ListViewItem(new[] { evt.EventName.ToString(), evt.StartDate.ToString(), evt.EndDate.ToString() });
+                        browseListView.Items.Add(item);
+                    }
+                }
+
+            }
+
+            
+        }
+
 
 
     }

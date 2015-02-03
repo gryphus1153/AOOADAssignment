@@ -39,16 +39,24 @@
             this.confirmEventTxtBox = new System.Windows.Forms.TextBox();
             this.createEventTxtBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ticketListView = new System.Windows.Forms.ListView();
+            this.ticketEventName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ticketStartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ticketEndDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ticketCancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnFilterEndDate = new System.Windows.Forms.Button();
+            this.btnFilterStartDate = new System.Windows.Forms.Button();
+            this.btnFliter = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.browseListView = new System.Windows.Forms.ListView();
             this.eventNameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.startDateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endDateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.followHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -110,6 +118,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Create/Close/Confirm Event";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // label5
             // 
@@ -147,6 +156,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ticketListView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -154,9 +164,47 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "View Ticket details or Cancel";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // ticketListView
+            // 
+            this.ticketListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ticketEventName,
+            this.ticketStartDate,
+            this.ticketEndDate,
+            this.ticketCancel});
+            this.ticketListView.FullRowSelect = true;
+            this.ticketListView.Location = new System.Drawing.Point(20, 27);
+            this.ticketListView.Name = "ticketListView";
+            this.ticketListView.Size = new System.Drawing.Size(722, 263);
+            this.ticketListView.TabIndex = 4;
+            this.ticketListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // ticketEventName
+            // 
+            this.ticketEventName.Text = "Event Name";
+            this.ticketEventName.Width = 140;
+            // 
+            // ticketStartDate
+            // 
+            this.ticketStartDate.Text = "Start Date";
+            this.ticketStartDate.Width = 140;
+            // 
+            // ticketEndDate
+            // 
+            this.ticketEndDate.Text = "End Date";
+            this.ticketEndDate.Width = 140;
+            // 
+            // ticketCancel
+            // 
+            this.ticketCancel.Text = "Cancel Ticket";
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnFilterEndDate);
+            this.tabPage1.Controls.Add(this.btnFilterStartDate);
+            this.tabPage1.Controls.Add(this.btnFliter);
+            this.tabPage1.Controls.Add(this.btnView);
             this.tabPage1.Controls.Add(this.browseListView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -166,6 +214,74 @@
             this.tabPage1.Text = "Browse Event";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // btnFilterEndDate
+            // 
+            this.btnFilterEndDate.Location = new System.Drawing.Point(319, 19);
+            this.btnFilterEndDate.Name = "btnFilterEndDate";
+            this.btnFilterEndDate.Size = new System.Drawing.Size(140, 23);
+            this.btnFilterEndDate.TabIndex = 7;
+            this.btnFilterEndDate.Text = "End Date";
+            this.btnFilterEndDate.UseVisualStyleBackColor = true;
+            this.btnFilterEndDate.Click += new System.EventHandler(this.btnFilterEndDate_Click);
+            // 
+            // btnFilterStartDate
+            // 
+            this.btnFilterStartDate.Location = new System.Drawing.Point(174, 19);
+            this.btnFilterStartDate.Name = "btnFilterStartDate";
+            this.btnFilterStartDate.Size = new System.Drawing.Size(143, 23);
+            this.btnFilterStartDate.TabIndex = 6;
+            this.btnFilterStartDate.Text = "Start Date";
+            this.btnFilterStartDate.UseVisualStyleBackColor = true;
+            this.btnFilterStartDate.Click += new System.EventHandler(this.btnFilterStartDate_Click);
+            // 
+            // btnFliter
+            // 
+            this.btnFliter.Location = new System.Drawing.Point(18, 19);
+            this.btnFliter.Name = "btnFliter";
+            this.btnFliter.Size = new System.Drawing.Size(155, 23);
+            this.btnFliter.TabIndex = 5;
+            this.btnFliter.Text = "Event name";
+            this.btnFliter.UseVisualStyleBackColor = true;
+            this.btnFliter.Click += new System.EventHandler(this.btnEventFliter_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(545, 291);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(195, 23);
+            this.btnView.TabIndex = 4;
+            this.btnView.Text = "View";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // browseListView
+            // 
+            this.browseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.eventNameCol,
+            this.startDateCol,
+            this.endDateCol});
+            this.browseListView.FullRowSelect = true;
+            this.browseListView.Location = new System.Drawing.Point(18, 18);
+            this.browseListView.Name = "browseListView";
+            this.browseListView.Size = new System.Drawing.Size(722, 267);
+            this.browseListView.TabIndex = 3;
+            this.browseListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // eventNameCol
+            // 
+            this.eventNameCol.Text = "Event Name";
+            this.eventNameCol.Width = 140;
+            // 
+            // startDateCol
+            // 
+            this.startDateCol.Text = "Start Date";
+            this.startDateCol.Width = 140;
+            // 
+            // endDateCol
+            // 
+            this.endDateCol.Text = "End Date";
+            this.endDateCol.Width = 140;
             // 
             // tabControl1
             // 
@@ -187,44 +303,6 @@
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 6;
             // 
-            // browseListView
-            // 
-            this.browseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.eventNameCol,
-            this.startDateCol,
-            this.endDateCol,
-            this.buttonHeader,
-            this.followHeader});
-            this.browseListView.FullRowSelect = true;
-            this.browseListView.Location = new System.Drawing.Point(18, 36);
-            this.browseListView.Name = "browseListView";
-            this.browseListView.Size = new System.Drawing.Size(722, 263);
-            this.browseListView.TabIndex = 3;
-            this.browseListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // eventNameCol
-            // 
-            this.eventNameCol.Text = "Event Name";
-            this.eventNameCol.Width = 140;
-            // 
-            // startDateCol
-            // 
-            this.startDateCol.Text = "Start Date";
-            this.startDateCol.Width = 140;
-            // 
-            // endDateCol
-            // 
-            this.endDateCol.Text = "End Date";
-            this.endDateCol.Width = 140;
-            // 
-            // buttonHeader
-            // 
-            this.buttonHeader.Text = "Buy Ticket";
-            // 
-            // followHeader
-            // 
-            this.followHeader.Text = "Follow";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,6 +320,7 @@
             this.Text = "Brotic System";
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -269,8 +348,15 @@
         private System.Windows.Forms.ColumnHeader eventNameCol;
         private System.Windows.Forms.ColumnHeader startDateCol;
         private System.Windows.Forms.ColumnHeader endDateCol;
-        private System.Windows.Forms.ColumnHeader buttonHeader;
-        private System.Windows.Forms.ColumnHeader followHeader;
+        private System.Windows.Forms.ListView ticketListView;
+        private System.Windows.Forms.ColumnHeader ticketEventName;
+        private System.Windows.Forms.ColumnHeader ticketStartDate;
+        private System.Windows.Forms.ColumnHeader ticketEndDate;
+        private System.Windows.Forms.ColumnHeader ticketCancel;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnFliter;
+        private System.Windows.Forms.Button btnFilterEndDate;
+        private System.Windows.Forms.Button btnFilterStartDate;
     }
 }
 
