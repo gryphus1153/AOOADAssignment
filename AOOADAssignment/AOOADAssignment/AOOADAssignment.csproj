@@ -56,6 +56,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Genre.cs" />
+    <Compile Include="ListViewExtender.cs" />
     <Compile Include="Name.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="Observer.cs" />
