@@ -22,6 +22,7 @@ namespace AOOADAssignment
             CreditCard cc = new CreditCard("1234-5678-9019", "09/25");
             ArrayList tickList = new ArrayList();
             //need ticket class
+            //Observer obs = new Observer;
             ArrayList payList = new ArrayList();
             User cust1 = new Customer("uID", "pass", name, "email@email.com", addr, "999666999", cc, tickList, payList);
             userList.Add(cust1);

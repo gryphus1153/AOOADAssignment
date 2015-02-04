@@ -11,12 +11,14 @@ namespace AOOADAssignment
     class Customer : User , Observer
     {
         public Customer() { }
-        public Customer(string uID, string pass, Name name, string email, Address addr, string phoneNum, CreditCard cc, ArrayList tickList, ArrayList payList) :base(uID, pass, name, email, addr)
+        public Customer(string uID, string pass, Name name, string email, Address addr, string phoneNum, CreditCard cc, ArrayList tickList, ArrayList payList)
+            : base(uID, pass, name, email, addr)// Observer obs
         {
             PhoneNumber = phoneNum;
             CreditCard = cc;
             TicketList = tickList;
             PaymentList = payList;
+            //obs = this;
         }
 
         public string PhoneNumber { get; set; }
