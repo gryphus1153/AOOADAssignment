@@ -85,9 +85,8 @@ namespace AOOADAssignment
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-            
-           
-            
+            browseListView.Items.Clear();
+            browseEventAdd(EventList);   
         }
         private void tabPage2_Click(object sender, EventArgs e)
         {
@@ -119,6 +118,7 @@ namespace AOOADAssignment
         }
         void btnFilterStartDate_Click(object sender, EventArgs e)
         {
+            browseListView.Items.Clear();
             ArrayList tempList = new ArrayList();
             tempList.AddRange(EventList);
             for (int i = 0; i < tempList.Count; ++i)
@@ -137,11 +137,12 @@ namespace AOOADAssignment
                     }
                 }
             }
+            browseEventAdd(tempList);
         }
 
         private void btnFilterEndDate_Click(object sender, EventArgs e)
         {
-            //browseListView.Clear();
+            browseListView.Items.Clear();
             ArrayList tempList = new ArrayList();
             tempList.AddRange(EventList);
             for (int i = 0; i < tempList.Count; ++i)
@@ -160,23 +161,12 @@ namespace AOOADAssignment
                     }
                 }
             }
-            if (isCustomer == true)
-            {
-                browseListView.View = View.Details;
-                foreach (Event evt in tempList)
-                {
-                    if (evt.Status.Equals("Open"))
-                    {
-                        ListViewItem item = new ListViewItem(new[] { evt.EventName.ToString(), evt.StartDate.ToString(), evt.EndDate.ToString() });
-                        browseListView.Items.Add(item);
-                    }
-                }
-
-            }
+            browseEventAdd(tempList);
         }
 
         private void btnEventFliter_Click(object sender, EventArgs e)
         {
+            browseListView.Items.Clear();
             ArrayList tempList = new ArrayList();
             tempList.AddRange(EventList);
             for(int i= 0; i < tempList.Count; ++i)
@@ -195,6 +185,13 @@ namespace AOOADAssignment
                     }
                 }
             }
+            browseEventAdd(tempList);
+
+            
+        }
+
+        private void browseEventAdd(ArrayList tempList)
+        {
             if (isCustomer == true)
             {
                 browseListView.View = View.Details;
@@ -208,11 +205,7 @@ namespace AOOADAssignment
                 }
 
             }
-
-            
         }
-
-
 
     }
 }
