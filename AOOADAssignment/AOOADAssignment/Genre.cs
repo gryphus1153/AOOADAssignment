@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    class Genre
+    public class Genre
     {
         public Genre() { }
         public Genre(string genreType)

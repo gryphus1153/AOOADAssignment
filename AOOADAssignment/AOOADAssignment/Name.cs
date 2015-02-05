@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    class Name
+    public class Name
     {
         public Name(string fName, string mName, string lName)
         {

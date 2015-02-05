@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace AOOADAssignment
 {
-    class EventManager : User
+    public class EventManager : User
     {
         public EventManager() { }
         public EventManager(string uID, string pass, Name name, string email, Address addr, ArrayList sList, ArrayList eList): base(uID, pass, name, email, addr)

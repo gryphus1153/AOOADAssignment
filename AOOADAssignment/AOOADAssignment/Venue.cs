@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    class Venue
+    public class Venue
     {
         public Venue() { }
         public Venue(string VenueName, Address Addr, Array SeatPlan)

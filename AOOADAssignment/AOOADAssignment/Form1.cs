@@ -32,7 +32,7 @@ namespace AOOADAssignment
             Genre eg = new Genre("Fantasy");
             ArrayList performancesList = new ArrayList();
             ArrayList sManagers = new ArrayList();
-            name = new Name("Tom","dick","Henry");
+            name = new Name("Tom", "dick", "Henry");
             addr = new Address("Block 234", "Street4567", "uNo", "#03-900");
             ArrayList specialitiesList = new ArrayList();
             Genre firstG = new Genre("Fantasy");
@@ -42,8 +42,9 @@ namespace AOOADAssignment
             ArrayList eventManagerEList = new ArrayList();
             foreach (Event e in EventList)
                 eventManagerEList.Add(e);
-            User el = new EventManager("eventManagerUID","epass",name,"emailManager@email.com",addr,specialitiesList,eventManagerEList);
-            EventManager em= (EventManager)el;
+            User el = new EventManager("eventManagerUID", "epass", name, "emailManager@email.com", addr, specialitiesList, eventManagerEList);
+            EventManager em = (EventManager)el;
+            
             Event event1 = new Event("Disney Fat Princesses", time, endTime, eg, performancesList, 100, "Open", em, sManagers, true);
             EventList.Add(event1);
 
@@ -54,6 +55,16 @@ namespace AOOADAssignment
             ArrayList sManagers1 = new ArrayList();
             Event event2 = new Event("Dance dance?!", time1, endTime1, eg1, performancesList1, 100, "Open", em, sManagers1, true);
             EventList.Add(event2);
+
+            DateTime time2 = Convert.ToDateTime("5/6/2015 12:00");
+            DateTime endTime2 = Convert.ToDateTime("6/6/2015 22:00");
+            Genre eg2 = new Genre("Music");
+            ArrayList performancesList2 = new ArrayList();
+            ArrayList sManagers2 = new ArrayList();
+            Event event3 = new Event("Garbage Music", time2, endTime2, eg2, performancesList2, 100, "Close", em, sManagers1, false);
+            EventList.Add(event3);
+
+
 
             InitializeComponent();
         }
@@ -80,7 +91,7 @@ namespace AOOADAssignment
                         break;
                     }
                 }
-                
+
 
             }
             if (exist == true)
@@ -97,11 +108,11 @@ namespace AOOADAssignment
         private void tabPage1_Click(object sender, EventArgs e)
         {
             browseListView.Items.Clear();
-            browseEventAdd(EventList);   
+            browseEventAdd(EventList);
         }
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            if(isCustomer == true)
+            if (isCustomer == true)
             {
 
             }
@@ -110,7 +121,7 @@ namespace AOOADAssignment
 
         private void tabPage3_Click(object sender, EventArgs e)
         {
-            if(isCustomer == false)
+            if (isCustomer == false)
             {
 
             }
@@ -180,15 +191,15 @@ namespace AOOADAssignment
             browseListView.Items.Clear();
             ArrayList tempList = new ArrayList();
             tempList.AddRange(EventList);
-            for(int i= 0; i < tempList.Count; ++i)
+            for (int i = 0; i < tempList.Count; ++i)
             {
-                for(int j=1; j<tempList.Count; ++j)
+                for (int j = 1; j < tempList.Count; ++j)
                 {
                     Event event1 = (Event)tempList[i];
                     Event event2 = (Event)tempList[j];
                     string e1 = event1.EventName;
                     string e2 = event2.EventName;
-                    if(String.Compare(e1,e2) > 0)
+                    if (String.Compare(e1, e2) > 0)
                     {
                         Event tempLargerEvent = event1;
                         tempList[i] = event2;
@@ -198,7 +209,7 @@ namespace AOOADAssignment
             }
             browseEventAdd(tempList);
 
-            
+
         }
 
         private void browseEventAdd(ArrayList tempList)
@@ -234,5 +245,83 @@ namespace AOOADAssignment
 
         }
 
+        private void confirmEventTxtBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+            confirmcloseLV.Items.Clear();
+            if (isCustomer == true)
+            {
+                confirmcloseLV.View = View.Details;
+                foreach (Event evt in EventList)
+                {
+
+                        ListViewItem item = new ListViewItem(new[] { evt.EventName.ToString(), evt.StartDate.ToString(), evt.EndDate.ToString() });
+                        confirmcloseLV.Items.Add(item);
+                 
+                }
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)//confirm close
+        {
+            if (confirmcloseLV.SelectedItems.Count > 0)
+            {
+                ListViewItem item = confirmcloseLV.SelectedItems[0];
+                string eventName = item.SubItems[0].Text;
+                foreach (Event evnt in EventList)
+                {
+                    if (evnt.EventName.Equals(eventName))
+                    {
+                        if (evnt.Status.Equals("Open"))//check the status
+                        {
+                            //make another display tell that its already confirmed. 
+
+                            break;
+                        }
+                        else
+                        {
+                            ConfirmClose confirmclse = new ConfirmClose(evnt);
+                            confirmclse.Visible = true;
+                            confirmclse.Show();
+                        }
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)//confirm confirm event
+        {
+            if (confirmcloseLV.SelectedItems.Count > 0)
+            {
+                ListViewItem item = confirmcloseLV.SelectedItems[0];
+                string eventName = item.SubItems[0].Text;
+                foreach(Event evnt in EventList)
+                {
+                    if(evnt.EventName.Equals(eventName))
+                    {
+                        if (evnt.IsConfirmed == true)
+                        {
+                            //make another display tell that its already confirmed. 
+
+                            break;
+                        }
+                        else
+                        {
+                            ConfirmConfirm confirmconfirm = new ConfirmConfirm(evnt);
+                            confirmconfirm.Visible = true;
+                            confirmconfirm.Show();
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
