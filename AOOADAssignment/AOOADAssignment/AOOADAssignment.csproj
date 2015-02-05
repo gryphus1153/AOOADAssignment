@@ -44,10 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPerformance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPerformance.Designer.cs">
+      <DependentUpon>AddPerformance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Address.cs" />
     <Compile Include="CreditCard.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

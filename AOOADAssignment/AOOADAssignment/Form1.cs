@@ -32,8 +32,19 @@ namespace AOOADAssignment
             Genre eg = new Genre("Fantasy");
             ArrayList performancesList = new ArrayList();
             ArrayList sManagers = new ArrayList();
-            EventManager el = new EventManager();
-            Event event1 = new Event("Disney Fat Princesses", time, endTime, eg, performancesList, 100, "Open", el, sManagers, true);
+            name = new Name("Tom","dick","Henry");
+            addr = new Address("Block 234", "Street4567", "uNo", "#03-900");
+            ArrayList specialitiesList = new ArrayList();
+            Genre firstG = new Genre("Fantasy");
+            Genre secondG = new Genre("Dance");
+            specialitiesList.Add(firstG);
+            specialitiesList.Add(secondG);
+            ArrayList eventManagerEList = new ArrayList();
+            foreach (Event e in EventList)
+                eventManagerEList.Add(e);
+            User el = new EventManager("eventManagerUID","epass",name,"emailManager@email.com",addr,specialitiesList,eventManagerEList);
+            EventManager em= (EventManager)el;
+            Event event1 = new Event("Disney Fat Princesses", time, endTime, eg, performancesList, 100, "Open", em, sManagers, true);
             EventList.Add(event1);
 
             DateTime time1 = Convert.ToDateTime("4/4/2015 12:00");
@@ -41,8 +52,7 @@ namespace AOOADAssignment
             Genre eg1 = new Genre("Dance");
             ArrayList performancesList1 = new ArrayList();
             ArrayList sManagers1 = new ArrayList();
-            EventManager el1 = new EventManager();
-            Event event2 = new Event("Dance dance?!", time1, endTime1, eg1, performancesList1, 100, "Open", el1, sManagers1, true);
+            Event event2 = new Event("Dance dance?!", time1, endTime1, eg1, performancesList1, 100, "Open", em, sManagers1, true);
             EventList.Add(event2);
 
             InitializeComponent();
@@ -206,6 +216,22 @@ namespace AOOADAssignment
                 }
 
             }
+        }
+
+        private void createBtn_Click(object sender, EventArgs e)
+        {
+            string eventName = eventNameTxtBox.Text;
+            DateTime startDate = Convert.ToDateTime(startDateTxtBox.Text);
+            DateTime endDate = Convert.ToDateTime(endDateTxtBox.Text);
+            Genre genre = new Genre(genreTxtBox.Text);
+            int minSeats = Convert.ToInt32(minSeatsTxtBox.Text);
+
+
+        }
+
+        private void addPerformanceBtn_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

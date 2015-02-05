@@ -9,8 +9,8 @@ namespace AOOADAssignment
 {
     class EventManager : User
     {
-        EventManager() { }
-        EventManager(string uID, string pass, Name name, string email, Address addr, ArrayList sList, ArrayList eList): base(uID, pass, name, email, addr)
+        public EventManager() { }
+        public EventManager(string uID, string pass, Name name, string email, Address addr, ArrayList sList, ArrayList eList): base(uID, pass, name, email, addr)
         {
             SpecialititesList = sList;
             EventList = eList;
