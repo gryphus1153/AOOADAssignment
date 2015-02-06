@@ -37,7 +37,6 @@
             this.createBtn = new System.Windows.Forms.Button();
             this.removeBtn = new System.Windows.Forms.Button();
             this.addPerformanceBtn = new System.Windows.Forms.Button();
-            this.performanceTxtBox = new System.Windows.Forms.TextBox();
             this.performanceslbl = new System.Windows.Forms.Label();
             this.minSeatsTxtBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -57,6 +56,7 @@
             this.ticketEndDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticketCancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnFilterEndDate = new System.Windows.Forms.Button();
             this.btnFilterStartDate = new System.Windows.Forms.Button();
             this.btnFliter = new System.Windows.Forms.Button();
@@ -67,19 +67,21 @@
             this.endDateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.confirmcloseLV = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnClose = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -128,10 +130,10 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.createBtn);
             this.tabPage3.Controls.Add(this.removeBtn);
             this.tabPage3.Controls.Add(this.addPerformanceBtn);
-            this.tabPage3.Controls.Add(this.performanceTxtBox);
             this.tabPage3.Controls.Add(this.performanceslbl);
             this.tabPage3.Controls.Add(this.minSeatsTxtBox);
             this.tabPage3.Controls.Add(this.label10);
@@ -171,6 +173,7 @@
             this.removeBtn.TabIndex = 19;
             this.removeBtn.Text = "Remove <<";
             this.removeBtn.UseVisualStyleBackColor = true;
+            this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
             // 
             // addPerformanceBtn
             // 
@@ -181,14 +184,6 @@
             this.addPerformanceBtn.Text = "Add >>";
             this.addPerformanceBtn.UseVisualStyleBackColor = true;
             this.addPerformanceBtn.Click += new System.EventHandler(this.addPerformanceBtn_Click);
-            // 
-            // performanceTxtBox
-            // 
-            this.performanceTxtBox.Location = new System.Drawing.Point(127, 176);
-            this.performanceTxtBox.Multiline = true;
-            this.performanceTxtBox.Name = "performanceTxtBox";
-            this.performanceTxtBox.Size = new System.Drawing.Size(489, 122);
-            this.performanceTxtBox.TabIndex = 17;
             // 
             // performanceslbl
             // 
@@ -335,6 +330,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.btnFilterEndDate);
             this.tabPage1.Controls.Add(this.btnFilterStartDate);
             this.tabPage1.Controls.Add(this.btnFliter);
@@ -348,6 +344,16 @@
             this.tabPage1.Text = "Browse Event";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(20, 76);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // btnFilterEndDate
             // 
@@ -445,6 +451,34 @@
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
+            // confirmcloseLV
+            // 
+            this.confirmcloseLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.confirmcloseLV.FullRowSelect = true;
+            this.confirmcloseLV.Location = new System.Drawing.Point(20, 38);
+            this.confirmcloseLV.Name = "confirmcloseLV";
+            this.confirmcloseLV.Size = new System.Drawing.Size(722, 239);
+            this.confirmcloseLV.TabIndex = 7;
+            this.confirmcloseLV.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Event Name";
+            this.columnHeader1.Width = 140;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Start Date";
+            this.columnHeader2.Width = 140;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "End Date";
+            this.columnHeader3.Width = 140;
+            // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(629, 283);
@@ -482,33 +516,13 @@
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 6;
             // 
-            // confirmcloseLV
+            // dataGridView1
             // 
-            this.confirmcloseLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.confirmcloseLV.FullRowSelect = true;
-            this.confirmcloseLV.Location = new System.Drawing.Point(20, 38);
-            this.confirmcloseLV.Name = "confirmcloseLV";
-            this.confirmcloseLV.Size = new System.Drawing.Size(722, 239);
-            this.confirmcloseLV.TabIndex = 7;
-            this.confirmcloseLV.UseCompatibleStateImageBehavior = false;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Event Name";
-            this.columnHeader1.Width = 140;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Start Date";
-            this.columnHeader2.Width = 140;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "End Date";
-            this.columnHeader3.Width = 140;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(127, 176);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(489, 116);
+            this.dataGridView1.TabIndex = 21;
             // 
             // Form1
             // 
@@ -529,9 +543,11 @@
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,7 +592,6 @@
         private System.Windows.Forms.Button createBtn;
         private System.Windows.Forms.Button removeBtn;
         private System.Windows.Forms.Button addPerformanceBtn;
-        private System.Windows.Forms.TextBox performanceTxtBox;
         private System.Windows.Forms.Label performanceslbl;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnClose;
@@ -586,6 +601,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

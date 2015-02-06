@@ -121,9 +121,10 @@ namespace AOOADAssignment
 
         private void tabPage3_Click(object sender, EventArgs e)
         {
+            ArrayList perfList = new ArrayList();
             if (isCustomer == false)
             {
-
+                dataGridView1.DataSource = perfList;
             }
         }
 
@@ -236,19 +237,22 @@ namespace AOOADAssignment
             DateTime endDate = Convert.ToDateTime(endDateTxtBox.Text);
             Genre genre = new Genre(genreTxtBox.Text);
             int minSeats = Convert.ToInt32(minSeatsTxtBox.Text);
+
+            ArrayList sManager = new ArrayList();
+            EventManager em = new EventManager();
+
+            Event ev = new Event(eventName, startDate, endDate, genre, perfList, minSeats, "Created", em, sManager, false);
+            EventList.Add(ev);
+
+        }
+        ArrayList perfList = new ArrayList();
+        private void addPerformanceBtn_Click(object sender, EventArgs e)
+        {
             AddPerformance ap = new AddPerformance();
             ap.ShowDialog();
             Performance p = ap.getPerformance();
-            ArrayList sManager = new ArrayList();
-
-            Event ev = new Event(string,startDate, endDate, genre, p, minSeats, "Created", EventManager, sManager, false);
-
-
-        }
-
-        private void addPerformanceBtn_Click(object sender, EventArgs e)
-        {
-
+            perfList.Add(p);
+            dataGridView1.DataSource = perfList;
         }
 
         private void confirmEventTxtBox_TextChanged(object sender, EventArgs e)
@@ -328,6 +332,13 @@ namespace AOOADAssignment
                     }
                 }
             }
+        }
+
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+            
+            perfList.Remove(dataGridView1.SelectedRows);
+            dataGridView1.DataSource = perfList;
         }
     }
 }
