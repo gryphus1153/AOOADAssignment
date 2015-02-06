@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    class Address
+    public class Address
     {
 
         //default constructor

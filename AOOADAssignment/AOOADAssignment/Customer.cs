@@ -8,7 +8,7 @@ using System.IO;
 
 namespace AOOADAssignment
 {
-    class Customer : User , Observer
+    public class Customer : User, Observer
     {
         public Customer() { }
         public Customer(string uID, string pass, Name name, string email, Address addr, string phoneNum, CreditCard cc, ArrayList tickList, ArrayList payList)

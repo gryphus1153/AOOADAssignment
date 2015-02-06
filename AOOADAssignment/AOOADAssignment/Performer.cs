@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace AOOADAssignment
 {
-    class Performer
+    public class Performer
     {
         public Performer() { }
         public Performer(Genre Genre, string PerformerName, ArrayList PerformancesList)

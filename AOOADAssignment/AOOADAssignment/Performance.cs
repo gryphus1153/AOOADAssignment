@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace AOOADAssignment
 {
-    class Performance
+    public class Performance
     {
         public Performance() { }
         public Performance(string perStart, string evntStart, ArrayList PerformersList)

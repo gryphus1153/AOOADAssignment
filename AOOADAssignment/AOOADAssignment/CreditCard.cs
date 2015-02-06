@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AOOADAssignment
 {
-    class CreditCard
+    public class CreditCard
     {
         public CreditCard() { }
         public CreditCard(string ccNo, string expDate)
