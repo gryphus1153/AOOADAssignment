@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPerformance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPerformance.Designer.cs">
+      <DependentUpon>AddPerformance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Address.cs" />
     <Compile Include="ConfirmClose.cs">
       <SubType>Form</SubType>
@@ -85,6 +91,9 @@
     <Compile Include="viewEventForm.Designer.cs">
       <DependentUpon>viewEventForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddPerformance.resx">
+      <DependentUpon>AddPerformance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfirmClose.resx">
       <DependentUpon>ConfirmClose.cs</DependentUpon>
     </EmbeddedResource>

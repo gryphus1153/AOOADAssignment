@@ -236,6 +236,12 @@ namespace AOOADAssignment
             DateTime endDate = Convert.ToDateTime(endDateTxtBox.Text);
             Genre genre = new Genre(genreTxtBox.Text);
             int minSeats = Convert.ToInt32(minSeatsTxtBox.Text);
+            AddPerformance ap = new AddPerformance();
+            ap.ShowDialog();
+            Performance p = ap.getPerformance();
+            ArrayList sManager = new ArrayList();
+
+            Event ev = new Event(string,startDate, endDate, genre, p, minSeats, "Created", EventManager, sManager, false);
 
 
         }
